@@ -1,0 +1,19 @@
+"xbacklight -dec 1"
+  XF86MonBrightnessDown
+"xbacklight -inc 1"
+  XF86MonBrightnessUp
+
+# Increase volume
+"pactl set-sink-volume 0 +10%"
+   XF86AudioRaiseVolume
+
+# Decrease volume
+"pactl set-sink-volume 0 -10%"
+   XF86AudioLowerVolume
+
+# Mute/unmute volume
+"pactl set-sink-mute 0 toggle"
+   XF86AudioMute
+
+# Mute/unmute mic
+
