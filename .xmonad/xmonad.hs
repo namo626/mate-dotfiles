@@ -8,6 +8,7 @@ import qualified XMonad.StackSet as W
 import XMonad.Layout.Renamed
 import XMonad.Actions.Navigation2D
 import XMonad.Actions.RotSlaves
+import XMonad.Actions.GroupNavigation
 import XMonad.Layout.PerWorkspace
 import XMonad.Layout.LayoutModifier
 import XMonad.Layout.TwoPane
@@ -58,6 +59,7 @@ myConfig = withNavigation2DConfig def {defaultTiledNavigation = hybridNavigation
   -- , logHook = dynamicLogWithPP $ xmobarPP { ppOutput = hPutStrLn p }
   --, handleEventHook = handleEventHook mateConfig <+> docksEventHook <+> fullscreenEventHook
   , handleEventHook = handleEventHook mateConfig 
+  , logHook = historyHook <+> logHook mateConfig
   , borderWidth = 3
   , focusedBorderColor = solBlue
   , normalBorderColor = darkBlue
@@ -86,6 +88,7 @@ myLayouts =
   $ onWorkspace "term" terminalLayout
   $ onWorkspace "docs" readingLayout
   $ onWorkspace "web" webLayout
+  $ onWorkspace "prog1" confLayout
   $ confLayout
 
 mySpacing = spacingWithEdge 5
@@ -148,9 +151,17 @@ myManageHook = composeOne
                , className =? "MATLAB R2017b - academic use" -?> insertPosition Below Older
                , className =? "matplotlib" -?> insertPosition Below Older
 	       , className =? "terminator" -?> insertPosition Below Newer
+               --, name =? "DeSmuME" -?> insertPosition Above Newer <+> doCenterFloat
                , return True -?> insertPosition Below Newer]
 
   where name = stringProperty "WM_NAME"
+
+-- Alt-Tab function
+sameWorkSpace = do
+  nw <- ask
+  liftX $ do
+    ws <- gets windowset
+    return $ maybe False (== W.currentTag ws) (W.findTag nw ws)
 
 altMask = mod1Mask
 myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
@@ -160,6 +171,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
  	, ((altMask, xK_k), windowGo U False)
  	, ((altMask, xK_h), windowGo L False)
         , ((modm, xK_u), goToSelected def)
+        , ((altMask, xK_Tab), nextMatch History sameWorkSpace)
         --, ((modm, xK_o), windowPrompt def Goto wsWindows)
 
         -- launching apps

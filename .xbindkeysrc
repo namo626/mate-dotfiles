@@ -16,4 +16,6 @@
    XF86AudioMute
 
 # Mute/unmute mic
+"amixer set Capture toggle"
+   XF86AudioMicMute
 
