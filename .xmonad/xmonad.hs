@@ -94,23 +94,34 @@ myLayouts =
 mySpacing = spacingWithEdge 5
 mySpacing' = smartSpacingWithEdge 7
 
+myTabTheme = def { fontName = "xft:Ubuntu Mono derivative Powerline:style=bold:size=13"
+                 , decoHeight = 20
+                 , activeTextColor = "#ffffff" --"#fbf1c7"
+                 , inactiveTextColor = "#ebdbb2"
+                 , inactiveColor = "#504945"
+                 , inactiveBorderColor = "#504945"
+                 , activeColor = blue --"#665c54"
+                 , activeBorderColor = blue --"#665c54"
+}
+
 confLayout =
   configurableNavigation noNavigateBorders $
+  addTabs shrinkText myTabTheme $
+  subLayout [] (Simplest) $
   mySpacing $
-  subLayout [] (Full) $
   simpleTall 53 ||| simpleThree 46 ||| (Mirror $ simpleTall 53)
 
 readingLayout =
   configurableNavigation noNavigateBorders $
   mySpacing $
-  simpleTwo 50 ||| (Mirror $ simpleTall 56)
+  Full ||| simpleTwo 50 ||| (Mirror $ simpleTall 56)
 
 terminalLayout =
   configurableNavigation noNavigateBorders $
   mySpacing $
   simpleTall 50 |||
   simpleThree 33 |||
-  (Mirror $ simpleTall 53)
+  (Mirror $ simpleTall 20)
 
 webLayout =
   configurableNavigation noNavigateBorders $
@@ -224,3 +235,21 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
         , ((altMask .|. shiftMask, xK_k), rotSlavesUp)
         , ((altMask .|. shiftMask, xK_j), rotSlavesDown)
         ]
+
+
+base03  = "#002b36"
+base02  = "#073642"
+base01  = "#586e75"
+base00  = "#657b83"
+base0   = "#839496"
+base1   = "#93a1a1"
+base2   = "#eee8d5"
+base3   = "#fdf6e3"
+yellow  = "#b58900"
+orange  = "#cb4b16"
+red     = "#dc322f"
+magenta = "#d33682"
+violet  = "#6c71c4"
+blue    = "#268bd2"
+cyan    = "#2aa198"
+green = "#859900"
