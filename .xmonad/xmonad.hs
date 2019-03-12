@@ -1,6 +1,7 @@
 {-# LANGUAGE FlexibleContexts #-}
 
 import XMonad
+import XMonad.Layout.Reflect
 import System.Environment (getEnvironment)
 import XMonad.Config.Mate
 import qualified Data.Map as M
@@ -121,7 +122,7 @@ terminalLayout =
   mySpacing $
   simpleTall 50 |||
   simpleThree 33 |||
-  (Mirror $ simpleTall 20)
+  (reflectVert $ Mirror $ simpleTall 20)
 
 webLayout =
   configurableNavigation noNavigateBorders $
