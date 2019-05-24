@@ -10,7 +10,7 @@ compton &
 udiskie --tray &
 #dropbox start &
 #~/.dropbox-dist/dropboxd &
-#megasync &
+megasync &
 #/usr/lib/notification-daemon-1.0/notification-daemon &
 #xscreensaver &
 #feh --bg-scale ~/Pictures/sky.jpg &
