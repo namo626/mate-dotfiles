@@ -4,6 +4,8 @@ import XMonad
 import XMonad.Layout.Reflect
 import System.Environment (getEnvironment)
 import XMonad.Config.Mate
+import XMonad.Config.Desktop
+import XMonad.Config.Xfce
 import qualified Data.Map as M
 import qualified XMonad.StackSet as W
 import XMonad.Layout.Renamed
@@ -60,13 +62,16 @@ myConfig = withNavigation2DConfig def {defaultTiledNavigation = hybridNavigation
   -- , logHook = dynamicLogWithPP $ xmobarPP { ppOutput = hPutStrLn p }
   --, handleEventHook = handleEventHook mateConfig <+> docksEventHook <+> fullscreenEventHook
   , handleEventHook = handleEventHook mateConfig 
+  --, logHook = historyHook <+> logHook mateConfig
   , logHook = historyHook <+> logHook mateConfig
   , borderWidth = 3
   , focusedBorderColor = solBlue
   , normalBorderColor = darkBlue
 --  , manageHook = fullscreenManageHook <+> manageDocks <+> myManageHook <+> manageHook mateConfig
   , manageHook = myManageHook <+> manageHook mateConfig
+  --, manageHook = myManageHook
   , XMonad.workspaces = myWorkspaces
+  , startupHook = spawn "~/scripts/trackpoint.sh" <+> startupHook mateConfig
   }
 
 mateRegister' :: MonadIO m => m ()
@@ -110,7 +115,7 @@ confLayout =
   addTabs shrinkText myTabTheme $
   subLayout [] (Simplest) $
   mySpacing $
-  simpleTall 53 ||| simpleThree 46 ||| (Mirror $ simpleTall 53)
+  simpleTall 53 ||| Full ||| simpleThree 46 ||| (Mirror $ simpleTall 53)
 
 readingLayout =
   configurableNavigation noNavigateBorders $
@@ -121,6 +126,7 @@ terminalLayout =
   configurableNavigation noNavigateBorders $
   mySpacing $
   simpleTall 50 |||
+  Full |||
   simpleThree 33 |||
   (reflectVert $ Mirror $ simpleTall 20)
 
@@ -164,6 +170,9 @@ myManageHook = composeOne
                , className =? "matplotlib" -?> insertPosition Below Older
 	       , className =? "terminator" -?> insertPosition Below Newer
                --, name =? "DeSmuME" -?> insertPosition Above Newer <+> doCenterFloat
+               , className =? "xfce4-panel" -?> doIgnore
+	       , className =? "Mate-control-center" -?> doCenterFloat
+               , className =? "Blueman-manager" -?> doCenterFloat
                , return True -?> insertPosition Below Newer]
 
   where name = stringProperty "WM_NAME"
