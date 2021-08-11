@@ -64,7 +64,7 @@ myConfig = withNavigation2DConfig def {defaultTiledNavigation = hybridNavigation
   , handleEventHook = handleEventHook mateConfig 
   --, logHook = historyHook <+> logHook mateConfig
   , logHook = historyHook <+> logHook mateConfig
-  , borderWidth = 3
+  , borderWidth = 0
   , focusedBorderColor = solBlue
   , normalBorderColor = darkBlue
 --  , manageHook = fullscreenManageHook <+> manageDocks <+> myManageHook <+> manageHook mateConfig
@@ -97,7 +97,7 @@ myLayouts =
   $ onWorkspace "prog1" confLayout
   $ confLayout
 
-mySpacing = spacingWithEdge 5
+mySpacing = spacingWithEdge 7
 mySpacing' = smartSpacingWithEdge 7
 
 myTabTheme = def { fontName = "xft:Ubuntu Mono derivative Powerline:style=bold:size=13"
@@ -115,7 +115,7 @@ confLayout =
   addTabs shrinkText myTabTheme $
   subLayout [] (Simplest) $
   mySpacing $
-  simpleTall 53 ||| Full ||| simpleThree 46 ||| (Mirror $ simpleTall 53)
+  simpleTall 53 ||| Full ||| (Mirror $ simpleTall 53)
 
 readingLayout =
   configurableNavigation noNavigateBorders $
@@ -126,9 +126,10 @@ terminalLayout =
   configurableNavigation noNavigateBorders $
   mySpacing $
   simpleTall 50 |||
-  Full |||
-  simpleThree 33 |||
-  (reflectVert $ Mirror $ simpleTall 20)
+  simpleTwo 50
+  --Full |||
+  --simpleThree 33 |||
+  --(reflectVert $ Mirror $ simpleTall 20)
 
 webLayout =
   configurableNavigation noNavigateBorders $
@@ -173,6 +174,7 @@ myManageHook = composeOne
                , className =? "xfce4-panel" -?> doIgnore
 	       , className =? "Mate-control-center" -?> doCenterFloat
                , className =? "Blueman-manager" -?> doCenterFloat
+	       , className =? "Desmume" -?> (doRectFloat $ W.RationalRect 0.1 0.1 1.0 1.0)
                , return True -?> insertPosition Below Newer]
 
   where name = stringProperty "WM_NAME"
@@ -206,6 +208,10 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList
         , ((modm .|. altMask, xK_semicolon), spawn "firefox")
         , ((modm .|. altMask, xK_p), spawn "pavucontrol")
         , ((modm, xK_d), spawn "dmenu_run")
+        , ((modm, xK_p), spawn "cmus-remote --pause")
+        , ((modm, xK_b), spawn "cmus-remote --next")
+        , ((modm, xK_o), spawn "cmus-remote --prev")
+        , ((modm, xK_x), spawn "cmus-remote -C player-play")
 
         -- resizing tall
         , ((modm, xK_a), sendMessage MirrorShrink)

@@ -1,0 +1,37 @@
+[global_config]
+  borderless = True
+  inactive_color_offset = 1.0
+  enabled_plugins = LaunchpadBugURLHandler, LaunchpadCodeURLHandler, APTURLHandler, TerminatorThemes
+  always_split_with_profile = True
+  title_use_system_font = False
+[keybindings]
+[profiles]
+  [[default]]
+    background_darkness = 0.61
+    background_type = transparent
+    cursor_color = "#aaaaaa"
+    font = Inconsolata-g for Powerline Medium 11
+    show_titlebar = False
+    scrollbar_position = hidden
+    use_system_font = False
+  [[Solarized Dark Higher Contrast]]
+    background_color = "#001e27"
+    background_darkness = 0.84
+    background_type = transparent
+    cursor_color = "#f34b00"
+    font = Source Code Pro for Powerline Medium 12
+    foreground_color = "#9cc2c3"
+    show_titlebar = False
+    scrollbar_position = hidden
+    palette = "#002831:#d11c24:#6cbe6c:#a57706:#2176c7:#c61c6f:#259286:#eae3cb:#006488:#f5163b:#51ef84:#b27e28:#178ec8:#e24d8e:#00b39e:#fcf4dc"
+    use_system_font = False
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+      profile = Solarized Dark Higher Contrast
+[plugins]
