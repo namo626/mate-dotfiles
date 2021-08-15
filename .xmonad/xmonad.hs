@@ -115,7 +115,7 @@ confLayout =
   addTabs shrinkText myTabTheme $
   subLayout [] (Simplest) $
   mySpacing $
-  simpleTall 53 ||| Full ||| (Mirror $ simpleTall 53)
+  simpleTall 56 ||| Full ||| (Mirror $ simpleTall 53)
 
 readingLayout =
   configurableNavigation noNavigateBorders $

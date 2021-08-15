@@ -6,7 +6,7 @@ xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 1 &
 xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1 &
 # redshift -b 0.8:0.6 &
 # redshift -b 0.85 &
-setxkbmap -option caps:escape
+setxkbmap -option caps:swapescape
 setxkbmap -layout us,th -option grp:lctrl_lshift_toggle
 xbindkeys
 #compton &
