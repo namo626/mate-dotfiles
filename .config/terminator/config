@@ -8,6 +8,7 @@
   zoom_out = <Primary>minus
   zoom_in_all = <Primary><Alt>equal
   zoom_out_all = <Primary><Alt>minus
+  copy = <Alt>w
 [profiles]
   [[default]]
     background_darkness = 0.61
