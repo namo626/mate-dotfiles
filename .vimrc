@@ -150,5 +150,6 @@ nnoremap <CR> :nohlsearch<CR><CR>
 
 let fortran_do_enddo=1
 
-# Show number of search matches
+" Show number of search matches
 set shortmess-=S
+set tabstop=4
