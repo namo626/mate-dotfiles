@@ -4,6 +4,7 @@ xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Enabled' 1 &
 xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Drag Enabled' 1 &
 xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 1 &
 xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1 &
+xinput --set-prop "SteelSeries SteelSeries Rival 3 Wireless" 'libinput Accel Speed' -0.2 &
 # redshift -b 0.8:0.6 &
 # redshift -b 0.85 &
 setxkbmap -option caps:swapescape
