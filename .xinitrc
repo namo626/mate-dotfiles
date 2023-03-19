@@ -5,14 +5,15 @@ xinput --set-prop 'SynPS/2 Synaptics TouchPad' 'libinput Tapping Drag Enabled' 1
 xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Speed" 1 &
 xinput --set-prop "TPPS/2 IBM TrackPoint" "libinput Accel Profile Enabled" 0 1 &
 xinput --set-prop "SteelSeries SteelSeries Rival 3 Wireless" 'libinput Accel Speed' -0.2 &
+#xinput --set-prop 9 "Evdev Scrolling Distance" 3 1 1
 # redshift -b 0.8:0.6 &
 # redshift -b 0.85 &
 setxkbmap -option caps:swapescape
 setxkbmap -layout us,th -option grp:lctrl_lshift_toggle
 xbindkeys
 #compton &
-picom &
-udiskie --tray &
+#picom &
+#udiskie --tray &
 #dropbox start &
 #~/.dropbox-dist/dropboxd &
 megasync &
@@ -22,4 +23,8 @@ megasync &
 xset b off & #turn off beeping
 #exec startxfce4
 #exec startlxde
-exec mate-session
+#exec mate-session
+
+# KDE
+export DESKTOP_SESSION=plasma
+exec startplasma-x11
